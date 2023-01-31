@@ -22,15 +22,23 @@
 </template>
 
 <script setup>
-import { reactive, onMounted } from 'vue'
+import {reactive, onMounted, onBeforeMount} from 'vue'
 import SerialCollection from "../lib/collection/serial-collection.js";
 import MainSerialItem from "./main-serial-item.vue";
+import {Status} from "../enum/loader.js";
 
 const state = reactive({
 	items: []
 })
+const emit = defineEmits([
+		'serial-loader-status'
+])
 
 const collection = new SerialCollection();
+
+onBeforeMount( () => {
+	emit('serial-loader-status', {status: Status.WAIT});
+})
 
 onMounted(() => {
 	return new Promise((resolve, reject) => {
@@ -45,6 +53,9 @@ onMounted(() => {
 					}
 
 				state.items = list
+
+				emit('serial-loader-status', {status: Status.NONE});
+
 				resolve();
 			});
 	})
