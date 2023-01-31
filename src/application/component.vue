@@ -11,5 +11,9 @@ import HeaderArea from '../views/header-area.vue';
 import MainArea from '../views/main-area.vue';
 import FooterArea from '../views/footer-area.vue';
 
+import { reactive, onMounted } from 'vue'
 
+const state = reactive({
+	status: []
+})
 </script>

@@ -13,72 +13,7 @@
 
 			</div>
 			<div class="row justify-content-center">
-				<div class="col-xl-3 col-lg-4 col-sm-6">
-					<div class="movie-item mb-50">
-						<div class="movie-poster">
-							<a href="movie-details.html"><img src="img/poster/ucm_poster01.jpg" alt=""></a>
-						</div>
-						<div class="movie-content">
-							<div class="top">
-								<h5 class="title"><a href="movie-details.html">Breaking Bad </a></h5>
-								<span class="date">2008 – 2013</span>
-							</div>
-							<div class="bottom">
-								<ul>
-									<li><span class="quality">hd</span></li>
-									<li>
-										<span class="duration"><i class="far fa-clock"></i> 47 мин</span>
-										<span class="rating"><i class="fas fa-thumbs-up"></i> 8.9</span>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-xl-3 col-lg-4 col-sm-6">
-					<div class="movie-item mb-50">
-						<div class="movie-poster">
-							<a href="movie-details.html"><img src="img/poster/ucm_poster03.jpg" alt=""></a>
-						</div>
-						<div class="movie-content">
-							<div class="top">
-								<h5 class="title"><a href="movie-details.html">Лучше звоните Солу</a></h5>
-								<span class="date">2015 – 2022</span>
-							</div>
-							<div class="bottom">
-								<ul>
-									<li><span class="quality">hd</span></li>
-									<li>
-										<span class="duration"><i class="far fa-clock"></i> 46 мин</span>
-										<span class="rating"><i class="fas fa-thumbs-up"></i> 8.3</span>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-xl-3 col-lg-4 col-sm-6">
-					<div class="movie-item mb-50">
-						<div class="movie-poster">
-							<a href="movie-details.html"><img src="img/poster/ucm_poster04.jpg" alt=""></a>
-						</div>
-						<div class="movie-content">
-							<div class="top">
-								<h5 class="title"><a href="movie-details.html">El Camino: Во все тяжкие</a></h5>
-								<span class="date">2019</span>
-							</div>
-							<div class="bottom">
-								<ul>
-									<li><span class="quality">hd</span></li>
-									<li>
-										<span class="duration"><i class="far fa-clock"></i> 122 мин</span>
-										<span class="rating"><i class="fas fa-thumbs-up"></i> 7.2</span>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
+				<main-serial-item :item="item" v-for="item in state.items" :key="item.id"/>
 			</div>
 
 		</div>
@@ -87,10 +22,14 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { reactive, onMounted } from 'vue'
 import SerialCollection from "../lib/collection/serial-collection.js";
+import MainSerialItem from "./main-serial-item.vue";
 
-const items = ref([]);
+const state = reactive({
+	items: []
+})
+
 const collection = new SerialCollection();
 
 onMounted(() => {
@@ -105,9 +44,7 @@ onMounted(() => {
 						list.push(model.getFields())
 					}
 
-				items.value = list
-
-				console.log(list);
+				state.items = list
 				resolve();
 			});
 	})
