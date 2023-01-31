@@ -96,13 +96,13 @@ const collection = new SerialCollection();
 onMounted(() => {
 	return new Promise((resolve, reject) => {
 
-		collection.refreshByFilter({active: 'Y'})
+		collection.refreshByFilter()
 			.then(() => {
 
 				const list = [];
 					for (let model of collection.getModels())
 					{
-						list.push(model.getField('id'))
+						list.push(model.getFields())
 					}
 
 				items.value = list
