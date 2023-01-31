@@ -3,11 +3,12 @@ import SerialModel from "../model/serial-model.js";
 
 export default class SerialCollection extends Collection
 {
-	serviceName = 'mft.report.';
+	serviceName = 'otus.serial.';
+	resultItem = 'serial';
+	resultList = 'serials';
 
-	getModelClass()
+	createModel(fields)
 	{
-		return SerialModel;
+		return SerialModel.create(fields);
 	}
-
 }

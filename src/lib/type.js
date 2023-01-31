@@ -21,4 +21,9 @@ export default class Type
 	{
 		return value === null || value === undefined;
 	}
+
+	static isString(value)
+	{
+		return typeof value === 'string';
+	}
 }

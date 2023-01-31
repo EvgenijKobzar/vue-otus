@@ -86,8 +86,32 @@
 	<!-- serial-area-end -->
 </template>
 
-<script>
+<script setup>
+import { ref, onMounted } from 'vue'
+import SerialCollection from "../lib/collection/serial-collection.js";
 
+const items = ref([]);
+const collection = new SerialCollection();
+
+onMounted(() => {
+	return new Promise((resolve, reject) => {
+
+		collection.refreshByFilter({active: 'Y'})
+			.then(() => {
+
+				const list = [];
+					for (let model of collection.getModels())
+					{
+						list.push(model.getField('id'))
+					}
+
+				items.value = list
+
+				console.log(list);
+				resolve();
+			});
+	})
+});
 </script>
 
 <style scoped>

@@ -38,3 +38,39 @@ import HelloWorld from './components/HelloWorld.vue'
   filter: drop-shadow(0 0 2em #42b883aa);
 }
 </style>
+
+
+collection.create(
+// {
+// 		title: 'Breaking Bad',
+// 		fileId: '1',
+// 		description: '',
+// 		rating: '8.9',
+// 		duration: '47',
+// 		productionPeriod: '2008-2013',
+// 		quality: 'hd',
+// 		active: 'Y',
+// 		sort: 100
+// },
+// {
+// 		title: 'Лучше звоните Солу',
+// 		fileId: '2',
+// 		description: '',
+// 		rating: '8.3',
+// 		duration: '46',
+// 		productionPeriod: '2015-2022',
+// 		quality: '4k',
+// 		active: 'Y',
+// 		sort: 200
+// },
+{
+title: 'El Camino: Во все тяжкие',
+fileId: '3',
+description: '',
+rating: '7.2',
+duration: '122',
+productionPeriod: '2019',
+quality: '8k',
+active: 'Y',
+sort: 300
+});

@@ -6,6 +6,8 @@ export default class Collection
 {
 	#map = new Map();
 	serviceName = '';
+	resultItem = '';
+	resultList = '';
 
 	getModels()
 	{
@@ -19,7 +21,7 @@ export default class Collection
 
 	create(fields)
 	{
-		const cmd = this.serviceName + 'list';
+		const cmd = this.serviceName + 'add';
 
 		(new Rest({
 			cmd,
@@ -27,38 +29,33 @@ export default class Collection
 		}))
 		.then(() => this.refreshByFilter())
 	}
+
 	init(map)
 	{
 		this.clear();
 
-		const modelClass = this.getModelClass();
-
-		map.forEach((item, index) =>
+		map.forEach((fields, index) =>
 		{
-			if (item['id'] > 0)
+			if (fields['id'] > 0)
 			{
-				let model = new modelClass({
-					fields : {
-						id : Text.toNumber(item.id),
-						code: item.code.toString(),
-						type: item.type.toString(),
-						active: item.active.toString(),
-					},
-				});
-
 				this.#map.set(
 					Text.toNumber(index),
-					model
+					this.createModel(fields)
 				)
 			}
 		});
+	}
+
+	createModel(fields)
+	{
+		new Error('create is not implemented')
 	}
 
 	refreshByFilter(filter = {})
 	{
 		return new Promise((resolve, reject) =>
 		{
-			const cmd = this.getRestCmdList();
+			const cmd = this.serviceName + 'list';
 
 			(new Rest({
 				cmd,
@@ -66,7 +63,7 @@ export default class Collection
 			}))
 			.then((result) =>
 			{
-				let items = result.data.result.reports ?? null;
+				let items = result.data.result[this.resultList] ?? null;
 
 				if (Type.isArrayFilled(items))
 				{
