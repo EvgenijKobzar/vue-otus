@@ -13,7 +13,7 @@
 
 			</div>
 			<div class="row justify-content-center">
-				<main-serial-item :item="item" v-for="item in state.items" :key="item.id"/>
+				<main-serial-item :item="item" v-for="item in props.serials" :key="item.id"/>
 			</div>
 
 		</div>
@@ -26,40 +26,46 @@ import {reactive, onMounted, onBeforeMount} from 'vue'
 import SerialCollection from "../lib/collection/serial-collection.js";
 import MainSerialItem from "./main-serial-item.vue";
 import {Status} from "../enum/loader.js";
+import SeasonCollection from "../lib/collection/season-collection";
+import EpisodeCollection from "../lib/collection/episode-collection.js";
 
-const state = reactive({
-	items: []
-})
+const props = defineProps([
+		'serials',
+])
+
+// const state = reactive({
+// 	items:
+// })
 const emit = defineEmits([
 		'serial-loader-status'
 ])
 
-const collection = new SerialCollection();
-
-onBeforeMount( () => {
-	emit('serial-loader-status', {status: Status.WAIT});
-})
-
-onMounted(() => {
-	return new Promise((resolve, reject) => {
-
-		collection.refreshByFilter()
-			.then(() => {
-
-				const list = [];
-					for (let model of collection.getModels())
-					{
-						list.push(model.getFields())
-					}
-
-				state.items = list
-
-				emit('serial-loader-status', {status: Status.NONE});
-
-				resolve();
-			});
-	})
-});
+// const collection = new SerialCollection();
+//
+// onBeforeMount( () => {
+// 	emit('serial-loader-status', {status: Status.WAIT});
+// })
+//
+// onMounted(() => {
+// 	return new Promise((resolve, reject) => {
+//
+// 		collection.refreshByFilter()
+// 			.then(() => {
+//
+// 				const list = [];
+// 					for (let model of collection.getModels())
+// 					{
+// 						list.push(model.getFields())
+// 					}
+//
+// 				state.items = list
+//
+// 				emit('serial-loader-status', {status: Status.NONE});
+//
+// 				resolve();
+// 			});
+// 	})
+// });
 </script>
 
 <style scoped>

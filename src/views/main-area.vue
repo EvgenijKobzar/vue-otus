@@ -2,8 +2,8 @@
 	<!-- main-area -->
 	<main>
 		<main-banner/>
-		<main-serial @serial-loader-status="emitLoadedStatus"/>
-		<main-season/>
+		<main-serial :serials="props.serials"  @serial-loader-status="emitLoadedStatus"/>
+		<main-season :season="props.season"/>
 		<main-letter/>
 	</main>
 	<!-- main-area-end -->
@@ -14,6 +14,11 @@ import MainBanner from '../views/main-banner.vue';
 import MainSerial from '../views/main-serial.vue';
 import MainSeason from '../views/main-season.vue';
 import MainLetter from '../views/main-newsletter.vue';
+
+const props = defineProps([
+		'serials',
+		'season',
+])
 
 const emit = defineEmits([
 	'main-area-loader-status'
