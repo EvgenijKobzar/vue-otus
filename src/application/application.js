@@ -15,7 +15,7 @@ export default class Application
 		return new Promise((resolve) =>
 		{
 			createApp(Component)
-				.mount(this.wrapper);
+				.mount(this.#layout());
 			// Todo: resolve() как его тут вызвать? как можно подписаться на onMounted()
 			resolve();
 		});

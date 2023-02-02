@@ -1,0 +1,51 @@
+<template>
+		<div class="col-xl-3 col-lg-4 col-sm-6 grid-item grid-sizer" style="position: absolute;">
+			<div class="movie-item mb-60">
+				<div class="movie-poster">
+					<a href="movie-details.html"><img :src="getSrc" alt=""></a>
+				</div>
+				<div class="movie-content">
+					<div class="top">
+						<h5 class="title"><a href="movie-details.html">{{ props.item.title }}</a></h5>
+						<span class="date">2013</span>
+					</div>
+					<div class="bottom">
+						<ul>
+							<li><span class="quality">4k</span></li>
+							<li>
+								<span class="duration"><i class="far fa-clock"></i> {{ props.item.duration }} мин</span>
+								<span class="rating"><i class="fas fa-thumbs-up"></i> 5</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+</template>
+
+<script setup>
+import { computed } from 'vue'
+import Type from "../lib/type.js";
+
+const props = defineProps(['item'])
+
+function getSrcByFileId(serialId, seasonId, episodeId)
+{
+	if(Type.isNil(episodeId) || Type.isNil(seasonId))
+	{
+		return 'img/poster/serial_0.jpg';
+	}
+	else
+	{
+		return 'img/poster/' + serialId +'/'+ seasonId + '_' + episodeId + '.jpg';
+	}
+}
+
+const getSrc = computed(() => {
+	return getSrcByFileId(props.item.serialId, props.item.seasonId, props.item.fileId);
+})
+</script>
+
+<style scoped>
+
+</style>

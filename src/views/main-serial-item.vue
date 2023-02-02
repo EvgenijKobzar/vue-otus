@@ -28,11 +28,9 @@ import { computed } from 'vue'
 
 const props = defineProps(['item'])
 
-
-
 function getSrcByFileId(id)
 {
-	return 'img/poster/ucm_poster0' + id +'.jpg';
+	return 'img/poster/serial_' + id +'.jpg';
 }
 
 const getSrc = computed(() => {

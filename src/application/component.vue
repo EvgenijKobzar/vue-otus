@@ -1,7 +1,7 @@
 <template>
 	<loader :status="state.status"/>
 	<header-area/>
-	<main-area :serials="state.serials" :seasons="state.season" :episodes="state.episodes" @main-area-loader-status="setLoadedStatus"/>
+	<main-area :serials="state.serials" :seasons="state.seasons" :episodes="state.episodes" @main-area-loader-status="setLoadedStatus"/>
 	<footer-area/>
 </template>
 
@@ -101,6 +101,7 @@ onMounted(() => {
 				getEpisodesByFilter({serialId: 1, season: 5}).then((episodes) => {
 					state.episodes = episodes;
 					state.status = Status.NONE;
+
 				})
 			})
 	})

@@ -13,24 +13,20 @@
 			<div class="row justify-content-center">
 				<div class="col-lg-8">
 					<div class="tr-movie-menu-active text-center">
-						<button class="" data-filter="*">Сезон - 1</button>
-						<button class="" data-filter="*">Сезон - 4</button>
-						<button class="" data-filter="*">Сезон - 3</button>
-						<button class="" data-filter="*">Сезон - 2</button>
-						<button class="active" data-filter="*">Сезон - 5</button>
+						<main-season-item :item="item" v-for="item in props.seasons" :key="item.id"/>
 					</div>
 				</div>
 			</div>
-			<MainSeasonEpisode/>
+			<slot name="episodes"></slot>
 		</div>
 	</section>
 	<!-- season-end -->
 </template>
 
 <script setup>
-import MainSeasonEpisode from "./main-season-episode.vue";
+import MainSeasonItem from "./main-season-item.vue";
 const props = defineProps([
-	'season',
+	'seasons',
 ])
 
 </script>

@@ -1,5 +1,5 @@
-import Collection from "./collection.js";
-import EpisodeModel from "../model/season-model.js";
+import Collection from "./collection";
+import EpisodeModel from "../model/episode-model";
 
 export default class EpisodeCollection extends Collection
 {
