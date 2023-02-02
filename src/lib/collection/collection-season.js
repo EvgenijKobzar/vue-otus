@@ -1,7 +1,7 @@
 import Collection from "./collection.js";
-import SeasonModel from "../model/season-model.js";
+import ModelSeason from "../model/model-season.js";
 
-export default class SeasonCollection extends Collection
+export default class CollectionSeason extends Collection
 {
 	serviceName = 'otus.season.';
 	resultItem = 'season';
@@ -9,6 +9,6 @@ export default class SeasonCollection extends Collection
 
 	createModel(fields)
 	{
-		return SeasonModel.create(fields);
+		return ModelSeason.create(fields);
 	}
 }

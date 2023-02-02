@@ -59,7 +59,8 @@ export default class Collection
 
 			(new Rest({
 				cmd,
-				filter
+				filter,
+				order: {sort: 'asc'}
 			}))
 			.then((result) =>
 			{

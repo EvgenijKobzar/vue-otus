@@ -9,6 +9,7 @@ export default class Rest
 		const params = {};
 		const filter = options.filter ?? false;
 		const fields = options.fields ?? false;
+		const order = options.order ?? false;
 
 		if (filter)
 		{
@@ -17,6 +18,11 @@ export default class Rest
 		else if (fields)
 		{
 			params.fields = fields
+		}
+
+		if (order)
+		{
+			params.order = order
 		}
 
 		return axios({

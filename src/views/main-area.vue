@@ -2,8 +2,12 @@
 	<!-- main-area -->
 	<main>
 		<main-banner/>
-		<main-serial :serials="props.serials"  @serial-loader-status="emitLoadedStatus"/>
-		<main-season :seasons="props.seasons">
+		<main-serial :serials="props.serials"
+								 @serial-change="emitSerialChange"
+		/>
+		<main-season :seasons="props.seasons" :selectedId="seasonId" :serials="props.serials"
+								 @season-change="emitSeasonChange"
+		>
 			<template v-slot:episodes>
 				<main-season-episode :episodes="props.episodes"/>
 			</template>
@@ -19,6 +23,7 @@ import MainSerial from '../views/main-serial.vue';
 import MainSeason from '../views/main-season.vue';
 import MainLetter from '../views/main-newsletter.vue';
 import MainSeasonEpisode from "./main-season-episode.vue";
+import {computed} from "vue";
 
 const props = defineProps([
 		'serials',
@@ -27,12 +32,21 @@ const props = defineProps([
 ])
 
 const emit = defineEmits([
-	'main-area-loader-status'
+	'main-area-serial-change',
+	'main-area-season-change',
 ])
 
-function emitLoadedStatus(data)
+const seasonId = computed(() => {
+	return props.episodes.slice(-1)[0]?.seasonId
+})
+
+function emitSerialChange(data)
 {
-	emit('main-area-loader-status', data );
+	emit('main-area-serial-change', data );
+}
+function emitSeasonChange(data)
+{
+	emit('main-area-season-change', data );
 }
 
 </script>

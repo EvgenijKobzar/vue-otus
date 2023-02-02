@@ -1,7 +1,7 @@
 import Collection from "./collection.js";
-import SerialModel from "../model/serial-model.js";
+import ModelSerial from "../model/model-serial.js";
 
-export default class SerialCollection extends Collection
+export default class CollectionSerial extends Collection
 {
 	serviceName = 'otus.serial.';
 	resultItem = 'serial';
@@ -9,6 +9,6 @@ export default class SerialCollection extends Collection
 
 	createModel(fields)
 	{
-		return SerialModel.create(fields);
+		return ModelSerial.create(fields);
 	}
 }

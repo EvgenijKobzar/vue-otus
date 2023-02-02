@@ -1,7 +1,7 @@
 import Model from "./model.js";
 import Type from "../type.js";
 
-export default class SerialModel extends Model
+export default class ModelEpisode extends Model
 {
 	static getState()
 	{
@@ -9,14 +9,14 @@ export default class SerialModel extends Model
 			id: null,
 			title: null,
 			fileId: null,
+			seasonId: null,
+			serialId: null,
+			src: null,
 			description: null,
-			rating: null,
 			duration: null,
-			productionPeriod: null,
-			quality: null
+			sort: null,
 		}
 	}
-
 	static validate(fields)
 	{
 		const result = {};
@@ -36,14 +36,24 @@ export default class SerialModel extends Model
 			result.fileId = parseInt(fields.fileId);
 		}
 
+		if (Type.isNumber(fields.serialId) || Type.isString(fields.serialId))
+		{
+			result.serialId = parseInt(fields.serialId);
+		}
+
+		if (Type.isNumber(fields.seasonId) || Type.isString(fields.seasonId))
+		{
+			result.seasonId = parseInt(fields.seasonId);
+		}
+
 		if (Type.isString(fields.description))
 		{
 			result.description = fields.description.toString()
 		}
 
-		if (Type.isString(fields.rating))
+		if (Type.isString(fields.src))
 		{
-			result.rating = fields.rating.toString();
+			result.src = fields.src.toString();
 		}
 
 		if (Type.isString(fields.duration))
@@ -51,14 +61,9 @@ export default class SerialModel extends Model
 			result.duration = fields.duration.toString();
 		}
 
-		if (Type.isString(fields.productionPeriod))
+		if (Type.isNumber(fields.sort) || Type.isString(fields.sort))
 		{
-			result.productionPeriod = fields.productionPeriod.toString();
-		}
-
-		if (Type.isString(fields.quality))
-		{
-			result.quality = fields.quality.toString();
+			result.sort = parseInt(fields.sort);
 		}
 
 		return result;

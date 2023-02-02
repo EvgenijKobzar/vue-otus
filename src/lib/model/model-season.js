@@ -1,7 +1,7 @@
 import Model from "./model.js";
 import Type from "../type.js";
 
-export default class SeasonModel extends Model
+export default class ModelSeason extends Model
 {
 	static getState()
 	{

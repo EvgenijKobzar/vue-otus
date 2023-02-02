@@ -1,7 +1,7 @@
 import Collection from "./collection";
-import EpisodeModel from "../model/episode-model";
+import ModelEpisode from "../model/model-episode.js";
 
-export default class EpisodeCollection extends Collection
+export default class CollectionEpisode extends Collection
 {
 	serviceName = 'otus.episode.';
 	resultItem = 'episode';
@@ -9,6 +9,6 @@ export default class EpisodeCollection extends Collection
 
 	createModel(fields)
 	{
-		return EpisodeModel.create(fields);
+		return ModelEpisode.create(fields);
 	}
 }
