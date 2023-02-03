@@ -2,16 +2,16 @@
 	<!-- main-area -->
 	<main>
 		<main-banner/>
-		<main-serial :serials="props.serials"
+		<main-serial :collection="serials"
 								 @serial-change="emitSerialChange"
 		/>
-		<main-season :seasons="props.seasons" :selectedId="seasonId" :serials="props.serials"
-								 @season-change="emitSeasonChange"
-		>
-			<template v-slot:episodes>
-				<main-season-episode :episodes="props.episodes"/>
-			</template>
-		</main-season>
+<!--		<main-season :seasons="props.seasons" :selectedId="seasonId" :serials="props.serials"-->
+<!--								 @season-change="emitSeasonChange"-->
+<!--		>-->
+<!--			<template v-slot:episodes>-->
+<!--				<main-season-episode :episodes="props.episodes"/>-->
+<!--			</template>-->
+<!--		</main-season>-->
 		<main-letter/>
 	</main>
 	<!-- main-area-end -->

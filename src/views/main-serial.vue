@@ -13,7 +13,7 @@
 
 			</div>
 			<div class="row justify-content-center">
-				<main-serial-item :item="item" v-for="item in props.serials" :key="item.id"
+				<main-serial-item :model="model" v-for="model in collection" :key="model.getId()"
 													@serial-change-item="emitChange"/>
 			</div>
 
@@ -25,8 +25,8 @@
 <script setup>
 import MainSerialItem from "./main-serial-item.vue";
 
-const props = defineProps([
-		'serials',
+defineProps([
+		'collection',
 ])
 
 const emit = defineEmits([
