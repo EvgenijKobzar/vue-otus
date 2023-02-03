@@ -5,13 +5,13 @@
 		<main-serial :collection="serials"
 								 @serial-change="emitSerialChange"
 		/>
-<!--		<main-season :seasons="props.seasons" :selectedId="seasonId" :serials="props.serials"-->
-<!--								 @season-change="emitSeasonChange"-->
-<!--		>-->
+		<main-season :collection="seasons" :id="seasonId"
+								 @season-change="emitSeasonChange"
+		>
 <!--			<template v-slot:episodes>-->
 <!--				<main-season-episode :episodes="props.episodes"/>-->
 <!--			</template>-->
-<!--		</main-season>-->
+		</main-season>
 		<main-letter/>
 	</main>
 	<!-- main-area-end -->
@@ -37,7 +37,7 @@ const emit = defineEmits([
 ])
 
 const seasonId = computed(() => {
-	return props.episodes.slice(-1)[0]?.seasonId
+	return props.episodes.next().value.getField('seasonId')
 })
 
 function emitSerialChange(data)
@@ -48,7 +48,6 @@ function emitSeasonChange(data)
 {
 	emit('main-area-season-change', data );
 }
-
 </script>
 
 <style scoped>

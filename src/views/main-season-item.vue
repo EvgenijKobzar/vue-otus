@@ -1,16 +1,28 @@
 <template>
-	<button data-filter="*" @click="click">{{props.item.title}}</button>
+	<button data-filter="*" @click="click">{{item.title}}</button>
 </template>
 
 <script setup>
-const props = defineProps(['item'])
+import {computed} from "vue";
+
+const props = defineProps(['model'])
 
 const emit = defineEmits([
 	'season-change-item',
 ]);
 
+const item = computed(() => {
+	return props.model.getFields();
+})
 function click()
 {
-	emit('season-change-item', { serial: { id: props.item.serialId }, season: { id: props.item.id }});
+	emit('season-change-item', {
+		serial: {
+			id: props.model.getField('serialId')
+		},
+		season: {
+			id: props.model.getId()
+		}
+	});
 }
 </script>
