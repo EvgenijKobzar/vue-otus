@@ -1,7 +1,7 @@
 <template>
 	<loader :status="state.status"/>
 	<header-area/>
-	<main-area :serials="state.serials" :seasons="state.seasons" :episodes="state.episodes"
+	<main-area :serials="state.serials" :seasons="state.seasons" :episodes="state.episodes"		v-if="state.status === Status.NONE"
 						 @main-area-serial-change="refresh"
 						 @main-area-season-change="refresh"
 	/>
