@@ -1,6 +1,6 @@
 <template>
 	<!-- season -->
-	<section class="top-rated-movie tr-movie-bg" data-background="img/bg/tr_movies_bg.jpg" style="background-image: url(&quot;img/bg/tr_movies_bg.jpg&quot;);">
+	<section class="top-rated-movie tr-movie-bg" style="background-image: url(&quot;img/bg/tr_movies_bg.jpg&quot;);">
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-lg-8">

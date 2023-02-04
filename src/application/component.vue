@@ -1,9 +1,14 @@
 <template>
 	<loader :status="state.status"/>
 	<header-area/>
-	<main-area :serials="state.serials" :seasons="state.seasons" :episodes="state.episodes"		v-if="state.status === Status.NONE"
+	<main-area :serials="state.serials" :seasons="state.seasons" :episodes="state.episodes"
+						 v-if="state.status === Status.NONE && state.page === Page.INDEX"
 						 @main-area-serial-change="refresh"
 						 @main-area-season-change="refresh"
+						 @main-area-episode-detail="detail"
+	/>
+	<main-details
+								v-if="state.status === Status.NONE && state.page === Page.DETAIL"
 	/>
 	<footer-area/>
 </template>
@@ -21,9 +26,12 @@ import CollectionSerial from "../lib/collection/collection-serial.js";
 import CollectionSeason from "../lib/collection/collection-season.js";
 import CollectionEpisode from "../lib/collection/collection-episode.js";
 import Type from "../lib/type.js";
+import MainDetails from "../views/main-details.vue";
+import {Page} from "../enum/page.js";
 
 const state = reactive({
 	status: Status.WAIT,
+	page: Page.INDEX,
 	serials: {},
 	seasons: {},
 	episodes: {},
@@ -33,6 +41,10 @@ const collectionSerial = new CollectionSerial();
 const collectionSeason = new CollectionSeason();
 const collectionEpisode = new CollectionEpisode();
 
+function detail(data)
+{
+	state.page = Page.DETAIL;
+}
 function refresh(data)
 {
 	collectionSerial.clear();

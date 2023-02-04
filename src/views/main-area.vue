@@ -10,7 +10,9 @@
 		>
 			<template v-slot:serial-name>{{ serialName }}</template>-->
 			<template v-slot:episodes>
-				<main-season-episode :list="episodes"/>
+				<main-season-episode :list="episodes"
+														 @episode-detail="emitEpisodeChange"
+				/>
 			</template>
 		</main-season>
 		<main-letter/>
@@ -35,6 +37,7 @@ const props = defineProps([
 const emit = defineEmits([
 	'main-area-serial-change',
 	'main-area-season-change',
+	'main-area-episode-detail',
 ])
 
 const serialName = computed(() => {
@@ -62,6 +65,10 @@ function emitSerialChange(data)
 function emitSeasonChange(data)
 {
 	emit('main-area-season-change', data );
+}
+function emitEpisodeChange(data)
+{
+	emit('main-area-episode-detail', data );
 }
 </script>
 

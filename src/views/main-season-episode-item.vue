@@ -1,12 +1,12 @@
 <template>
 		<div class="col-xl-3 col-lg-4 col-sm-6 grid-item grid-sizer" style="position: absolute;">
-			<div class="movie-item mb-60">
+			<div class="movie-item mb-60" @click="click">
 				<div class="movie-poster">
-					<a href="movie-details.html"><img :src="getSrc" alt=""></a>
+					<a href="#"><img :src="getSrc" alt=""></a>
 				</div>
 				<div class="movie-content">
 					<div class="top">
-						<h5 class="title"><a href="movie-details.html">{{ props.item.title }}</a></h5>
+						<h5 class="title"><a href="#">{{ props.item.title }}</a></h5>
 						<span class="date">2013</span>
 					</div>
 					<div class="bottom">
@@ -44,6 +44,19 @@ function getSrcByFileId(serialId, seasonId, episodeId)
 const getSrc = computed(() => {
 	return getSrcByFileId(props.item.serialId, props.item.seasonId, props.item.fileId);
 })
+
+const emit = defineEmits([
+	'episode-detail-item',
+]);
+
+function click()
+{
+	emit('episode-detail-item', {
+		episode: {
+			id: props.item.id
+		}
+	});
+}
 </script>
 
 <style scoped>

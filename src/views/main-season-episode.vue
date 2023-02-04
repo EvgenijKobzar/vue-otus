@@ -3,13 +3,21 @@
 
 		<template v-for="col in getColIndexes(list)">
 			<main-season-episode-item :item="list[col.inx]" :key="list[col.inx].id"
-																:style="{position: 'absolute', left: '0%', top: col.top + 'px'}" v-if="col.num === 0"/>
+																:style="{position: 'absolute', left: '0%', top: col.top + 'px'}" v-if="col.num === 0"
+																@episode-detail-item="emitChange"
+			/>
 			<main-season-episode-item :item="list[col.inx]" :key="list[col.inx].id"
-																:style="{position: 'absolute', left: '24.9624%', top: col.top + 'px'}" v-else-if="col.num === 1"/>
+																:style="{position: 'absolute', left: '24.9624%', top: col.top + 'px'}" v-else-if="col.num === 1"
+																@episode-detail-item="emitChange"
+			/>
 			<main-season-episode-item :item="list[col.inx]" :key="list[col.inx].id"
-																:style="{position: 'absolute', left: '50%', top: col.top + 'px'}" v-else-if="col.num === 2"/>
+																:style="{position: 'absolute', left: '50%', top: col.top + 'px'}" v-else-if="col.num === 2"
+																@episode-detail-item="emitChange"
+			/>
 			<main-season-episode-item :item="list[col.inx]" :key="list[col.inx].id"
-																:style="{position: 'absolute', left: '74.9624%', top: col.top + 'px'}" v-else-if="col.num === 3"/>
+																:style="{position: 'absolute', left: '74.9624%', top: col.top + 'px'}" v-else-if="col.num === 3"
+																@episode-detail-item="emitChange"
+			/>
 		</template>
 	</div>
 </template>
@@ -17,12 +25,19 @@
 <script setup>
 import MainSeasonEpisodeItem from "./main-season-episode-item.vue";
 
-const topInc = 572;
-
 defineProps([
 	'list',
 ])
 
+const topInc = 572;
+const emit = defineEmits([
+	'episode-detail',
+]);
+
+function emitChange(data)
+{
+	emit('episode-detail', data );
+}
 function getColIndexes(list)
 {
 	const result = []
