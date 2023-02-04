@@ -35,6 +35,10 @@ const collectionEpisode = new CollectionEpisode();
 
 function refresh(data)
 {
+	collectionSerial.clear();
+	collectionSeason.clear();
+	collectionEpisode.clear();
+
 	const serialId = data.serial.id;
 	const seasonId = data.season?.id;
 

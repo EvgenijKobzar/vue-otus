@@ -52,7 +52,7 @@ const serialName = computed(() => {
 })
 
 const seasonId = computed(() => {
-	return props.episodes.slice(-1)[0]?.seasonId;
+	return props.episodes.slice(0)[0]?.seasonId;
 })
 
 function emitSerialChange(data)
