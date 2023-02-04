@@ -1,14 +1,14 @@
 <template>
-	<div class="row tr-movie-active" :style="{position: 'relative', height: getMaxTop(props.episodes) + 'px'}">
+	<div class="row tr-movie-active" :style="{position: 'relative', height: getMaxTop(list) + 'px'}">
 
-		<template v-for="col in getColIndexes(props.episodes)">
-			<main-season-episode-item :item="props.episodes[col.inx]" :key="props.episodes[col.inx].id"
+		<template v-for="col in getColIndexes(list)">
+			<main-season-episode-item :item="list[col.inx]" :key="list[col.inx].id"
 																:style="{position: 'absolute', left: '0%', top: col.top + 'px'}" v-if="col.num === 0"/>
-			<main-season-episode-item :item="props.episodes[col.inx]" :key="props.episodes[col.inx].id"
+			<main-season-episode-item :item="list[col.inx]" :key="list[col.inx].id"
 																:style="{position: 'absolute', left: '24.9624%', top: col.top + 'px'}" v-else-if="col.num === 1"/>
-			<main-season-episode-item :item="props.episodes[col.inx]" :key="props.episodes[col.inx].id"
+			<main-season-episode-item :item="list[col.inx]" :key="list[col.inx].id"
 																:style="{position: 'absolute', left: '50%', top: col.top + 'px'}" v-else-if="col.num === 2"/>
-			<main-season-episode-item :item="props.episodes[col.inx]" :key="props.episodes[col.inx].id"
+			<main-season-episode-item :item="list[col.inx]" :key="list[col.inx].id"
 																:style="{position: 'absolute', left: '74.9624%', top: col.top + 'px'}" v-else-if="col.num === 3"/>
 		</template>
 	</div>
@@ -16,12 +16,11 @@
 
 <script setup>
 import MainSeasonEpisodeItem from "./main-season-episode-item.vue";
-import {computed} from "vue";
 
 const topInc = 572;
 
-const props = defineProps([
-	'episodes',
+defineProps([
+	'list',
 ])
 
 function getColIndexes(list)

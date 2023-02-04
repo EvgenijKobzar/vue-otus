@@ -26,25 +26,21 @@
 <script setup>
 import { computed } from 'vue'
 
-const props = defineProps(['model'])
+const props = defineProps(['item'])
 
 const emit = defineEmits([
 	'serial-change-item',
 ]);
 
 const getSrc = computed(() => {
-	return getSrcByFileId(props.model.getField('fileId'));
-})
-
-const item = computed(() => {
-	return props.model.getFields();
+	return getSrcByFileId(props.item.fileId);
 })
 
 function click()
 {
 	emit('serial-change-item', {
 		serial: {
-			id: props.model.getId()
+			id: props.item.id
 		}
 	});
 }

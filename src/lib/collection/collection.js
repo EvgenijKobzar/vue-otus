@@ -9,9 +9,16 @@ export default class Collection
 	resultItem = '';
 	resultList = '';
 
-	getModels()
+	toArray()
 	{
-		return this.#map.values();
+		const list = [];
+
+		for (let model of this.#map.values())
+		{
+			list.push(model.getFields())
+		}
+
+		return list;
 	}
 
 	getModelClass()

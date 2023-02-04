@@ -56,9 +56,9 @@ function init(options)
 		.then(() => collectionEpisode.refreshByFilter(episodeFilter)
 		.then(() => {
 
-			state.serials = collectionSerial.getModels();
-			state.seasons = collectionSeason.getModels();
-			state.episodes = collectionEpisode.getModels();
+			state.serials = collectionSerial.toArray();
+			state.seasons = collectionSeason.toArray();
+			state.episodes = collectionEpisode.toArray();
 
 			resolve();
 		})))

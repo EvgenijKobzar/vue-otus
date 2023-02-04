@@ -15,7 +15,7 @@
 			<div class="row justify-content-center">
 				<div class="col-lg-8">
 					<div class="tr-movie-menu-active text-center">
-						<main-season-item :class="{'active': model.getId() === id}" :model="model" v-for="model in collection" :key="model.getId()"
+						<main-season-item :class="{'active': item.id === id}" :item="item" v-for="item in list" :key="item.id"
 															@season-change-item="emitChange"
 						/>
 					</div>
@@ -31,7 +31,7 @@
 import MainSeasonItem from "./main-season-item.vue";
 
 defineProps([
-	'collection',
+	'list',
 	'id',
 ])
 

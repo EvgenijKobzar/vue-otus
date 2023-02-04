@@ -3,25 +3,21 @@
 </template>
 
 <script setup>
-import {computed} from "vue";
 
-const props = defineProps(['model'])
+const props = defineProps(['item'])
 
 const emit = defineEmits([
 	'season-change-item',
 ]);
 
-const item = computed(() => {
-	return props.model.getFields();
-})
 function click()
 {
 	emit('season-change-item', {
 		serial: {
-			id: props.model.getField('serialId')
+			id: props.item.serialId
 		},
 		season: {
-			id: props.model.getId()
+			id: props.item.id
 		}
 	});
 }
