@@ -19,7 +19,7 @@
 				<div class="row">
 					<div class="col-lg-6 col-md-6">
 						<div class="copyright-text">
-							<p>Copyright © 2021. All Rights Reserved By <a href="index.html">Movflx</a></p>
+							<p>Copyright © 2023. </p>
 						</div>
 					</div>
 					<div class="col-lg-6 col-md-6">

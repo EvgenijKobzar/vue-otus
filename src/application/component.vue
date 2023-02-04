@@ -7,7 +7,8 @@
 						 @main-area-season-change="refresh"
 						 @main-area-episode-detail="detail"
 	/>
-	<main-details
+	<main-details :serials="state.serials" :seasons="state.seasons" :episodes="state.episodes" :id="state.episodeId"
+								@main-area-serial-change="refresh"
 								v-if="state.status === Status.NONE && state.page === Page.DETAIL"
 	/>
 	<footer-area/>
@@ -32,6 +33,7 @@ import {Page} from "../enum/page.js";
 const state = reactive({
 	status: Status.WAIT,
 	page: Page.INDEX,
+	episodeId: null,
 	serials: {},
 	seasons: {},
 	episodes: {},
@@ -43,6 +45,7 @@ const collectionEpisode = new CollectionEpisode();
 
 function detail(data)
 {
+	state.episodeId = data.episode.id;
 	state.page = Page.DETAIL;
 }
 function refresh(data)
@@ -55,6 +58,8 @@ function refresh(data)
 	const seasonId = data.season?.id;
 
 	state.status = Status.WAIT;
+	state.page = Page.INDEX;
+
 	return init({
 		serial: {id : serialId},
 		season: {id : seasonId},

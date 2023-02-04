@@ -54,7 +54,7 @@ function click()
 	emit('episode-detail-item', {
 		episode: {
 			id: props.item.id
-		}
+		},
 	});
 }
 </script>
