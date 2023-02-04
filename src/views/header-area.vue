@@ -15,25 +15,15 @@
 								</div>
 								<div class="navbar-wrap main-menu d-none d-lg-flex">
 									<ul class="navigation">
-										<li class="active menu-item-has-children"><a href="#">Home</a>
+										<li class="active menu-item-has-children"><a href="/">к сериалам</a>
 											<div class="dropdown-btn"><span class="fas fa-angle-down"></span></div></li>
 									</ul>
 								</div>
 								<div class="header-action d-none d-md-block">
 									<ul>
 										<li class="header-search"><a href="#" data-toggle="modal" data-target="#search-modal"><i class="fas fa-search"></i></a></li>
-										<li class="header-lang">
-											<form action="#">
-												<div class="icon"><i class="flaticon-globe"></i></div>
-												<select id="lang-dropdown">
-													<option value="">En</option>
-													<option value="">Au</option>
-													<option value="">AR</option>
-													<option value="">TU</option>
-												</select>
-											</form>
-										</li>
-										<li class="header-btn"><a href="#" class="btn">Sign In</a></li>
+
+										<li class="header-btn"><a href="#" class="btn">Выйти</a></li>
 									</ul>
 								</div>
 							</nav>
