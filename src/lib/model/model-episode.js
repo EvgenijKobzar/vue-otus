@@ -15,6 +15,9 @@ export default class ModelEpisode extends Model
 			description: null,
 			duration: null,
 			sort: null,
+			rating: null,
+			productionDate: null,
+			quality: null
 		}
 	}
 	static validate(fields)
@@ -59,6 +62,21 @@ export default class ModelEpisode extends Model
 		if (Type.isString(fields.duration))
 		{
 			result.duration = fields.duration.toString();
+		}
+
+		if (Type.isString(fields.quality))
+		{
+			result.quality = fields.quality.toString();
+		}
+
+		if (Type.isString(fields.rating))
+		{
+			result.rating = fields.rating.toString();
+		}
+
+		if (Type.isString(fields.productionDate))
+		{
+			result.productionDate = fields.productionDate.toString();
 		}
 
 		if (Type.isNumber(fields.sort) || Type.isString(fields.sort))

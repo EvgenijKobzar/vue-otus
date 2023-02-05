@@ -7,14 +7,14 @@
 				<div class="movie-content">
 					<div class="top">
 						<h5 class="title"><a href="#">{{ props.item.title }}</a></h5>
-						<span class="date">2013</span>
+						<span class="date">{{ props.item.productionDate }}</span>
 					</div>
 					<div class="bottom">
 						<ul>
-							<li><span class="quality">4k</span></li>
+							<li><span class="quality">{{ props.item.quality }}</span></li>
 							<li>
 								<span class="duration"><i class="far fa-clock"></i> {{ props.item.duration }} мин</span>
-								<span class="rating"><i class="fas fa-thumbs-up"></i> 5</span>
+								<span class="rating"><i class="fas fa-thumbs-up"></i> {{ props.item.rating }} </span>
 							</li>
 						</ul>
 					</div>

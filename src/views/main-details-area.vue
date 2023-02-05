@@ -16,7 +16,7 @@
 							<ul>
 								<li class="quality">
 									<span>Pg 18</span>
-									<span>hd</span>
+									<span>{{ item.quality }}</span>
 								</li>
 
 								<li class="release-time">

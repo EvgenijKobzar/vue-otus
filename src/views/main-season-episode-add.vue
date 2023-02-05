@@ -76,6 +76,9 @@ const state = reactive({
 		duration: '',
 		description: '',
 		sort: 1000,
+		rating: '',
+		quality: '8K',
+		productionDate: '2023',
 	}
 })
 
