@@ -5,11 +5,19 @@
 								@header-episode-add="addEpisode"
 								@header-show-search-modal="showSearchModal"
 	/>
-	<main-modal-search :showSearchModal="state.showSearchModal"
-								@search-list="find"
-	/>
 
-	<template v-if="state.page === Page.ADD_SEASON">
+	<template v-if="state.modal === Modal.SEARCH">
+		<main-modal-search
+											 @search-list="find"
+		/>
+	</template>
+
+	<template v-if="state.page === Page.SEARCH_LIST">
+		<main-search-list :items="state.search.result"
+											v-if = "state.status === Status.NONE"
+		/>
+	</template>
+	<template v-else-if="state.page === Page.ADD_SEASON">
 		<main-season-add :serials="state.serials"
 										 v-if = "state.status === Status.NONE"
 										 @season-create="createSeason"
@@ -54,12 +62,18 @@ import {Page} from "../enum/page.js";
 import MainSeasonAdd from "../views/main-season-add.vue";
 import MainSeasonEpisodeAdd from "../views/main-season-episode-add.vue";
 import MainModalSearch from "../views/main-modal-search.vue";
+import {Modal} from "../enum/modal.js";
+import MainSearchList from "../views/main-search-list.vue";
 
 const state = reactive({
 	status: Status.WAIT,
 	page: Page.INDEX,
+	modal: Modal.NONE,
+	search:
+			{
+				result: null
+			},
 	episodeId: null,
-	showSearchModal: false,
 	serials: {},
 	seasons: {},
 	episodes: {},
@@ -71,11 +85,23 @@ const collectionEpisode = new CollectionEpisode();
 
 function find(text)
 {
-	alert(text)
+	state.search.result = null;
+
+	state.status = Status.WAIT;
+	state.modal = Modal.NONE;
+	state.page = Page.SEARCH_LIST;
+
+	const searchCollectionEpisode = new CollectionEpisode()
+	return searchCollectionEpisode.refreshByFilter({
+			'%description': text
+	}).then(() => {
+		state.search.result = searchCollectionEpisode.toArray();
+		state.status = Status.NONE;
+	});
 }
 function showSearchModal()
 {
-	state.showSearchModal = true;
+	state.modal = Modal.SEARCH;
 }
 function createEpisode(data)
 {

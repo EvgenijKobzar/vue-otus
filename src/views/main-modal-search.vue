@@ -1,5 +1,5 @@
 <template>
-	<div class="modal fade show" id="search-modal" tabindex="-1" style="padding-right: '17px';" :style="getStyle" aria-modal="true" role="dialog">
+	<div class="modal fade show" id="search-modal" tabindex="-1" style="padding-right: '17px'; display: block;" aria-modal="true" role="dialog">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<form>
@@ -12,11 +12,7 @@
 </template>
 
 <script setup>
-import {computed, reactive} from "vue";
-
-const props = defineProps([
-	'showSearchModal',
-]);
+import {reactive} from "vue";
 
 const emit = defineEmits([
 	'search-list',
@@ -25,13 +21,6 @@ const emit = defineEmits([
 const state = reactive({
 	text: null
 })
-
-const getStyle = computed(() => {
-	return {
-		display: props.showSearchModal ? 'block':'none',
-	}
-})
-
 function searchList()
 {
 	emit('search-list', state.text);
