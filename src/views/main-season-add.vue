@@ -65,7 +65,7 @@ const state = reactive({
 const emit = defineEmits([
 	'season-create',
 ]);
-const props = defineProps([
+defineProps([
 	'serials',
 ]);
 

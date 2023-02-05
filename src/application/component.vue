@@ -3,7 +3,12 @@
 	<header-area
 								@header-season-add="addSeason"
 								@header-episode-add="addEpisode"
+								@header-show-search-modal="showSearchModal"
 	/>
+	<main-modal-search :showSearchModal="state.showSearchModal"
+								@search-list="find"
+	/>
+
 	<template v-if="state.page === Page.ADD_SEASON">
 		<main-season-add :serials="state.serials"
 										 v-if = "state.status === Status.NONE"
@@ -48,11 +53,13 @@ import MainDetails from "../views/main-details.vue";
 import {Page} from "../enum/page.js";
 import MainSeasonAdd from "../views/main-season-add.vue";
 import MainSeasonEpisodeAdd from "../views/main-season-episode-add.vue";
+import MainModalSearch from "../views/main-modal-search.vue";
 
 const state = reactive({
 	status: Status.WAIT,
 	page: Page.INDEX,
 	episodeId: null,
+	showSearchModal: false,
 	serials: {},
 	seasons: {},
 	episodes: {},
@@ -62,6 +69,14 @@ const collectionSerial = new CollectionSerial();
 const collectionSeason = new CollectionSeason();
 const collectionEpisode = new CollectionEpisode();
 
+function find(text)
+{
+	alert(text)
+}
+function showSearchModal()
+{
+	state.showSearchModal = true;
+}
 function createEpisode(data)
 {
 	state.status = Status.WAIT;

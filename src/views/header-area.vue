@@ -40,35 +40,13 @@
 								</div>
 								<div class="header-action d-none d-md-block">
 									<ul>
-										<li class="header-search"><a href="#" data-toggle="modal" data-target="#search-modal"><i class="fas fa-search"></i></a></li>
-										<li class="header-lang">
-											<form action="#">
-												<div class="icon"><i class="flaticon-globe"></i></div>
-												<select id="lang-dropdown">
-													<option value="">En</option>
-													<option value="">Au</option>
-													<option value="">AR</option>
-													<option value="">TU</option>
-												</select>
-											</form>
-										</li>
-										<li class="header-btn"><a href="#" class="btn">Sign In</a></li>
+										<li class="header-search"><a href="#" data-toggle="modal" data-target="#search-modal" @click="showSearchModal"><i class="fas fa-search"></i></a></li>
+<!--										<li class="header-btn"><a href="#" class="btn">Sign In</a></li>-->
 									</ul>
 								</div>
 							</nav>
 						</div>
-
 						<!-- Modal Search -->
-						<div class="modal fade show" id="search-modal" tabindex="-1" style="display: none; padding-right: 17px;" aria-modal="true" role="dialog">
-							<div class="modal-dialog" role="document">
-								<div class="modal-content">
-									<form>
-										<input type="text" placeholder="Search here...">
-										<button><i class="fas fa-search"></i></button>
-									</form>
-								</div>
-							</div>
-						</div>
 						<!-- Modal Search-end -->
 					</div>
 				</div>
@@ -83,7 +61,13 @@
 const emit = defineEmits([
 	'header-season-add',
 	'header-episode-add',
+	'header-show-search-modal',
 ]);
+
+function showSearchModal()
+{
+	emit('header-show-search-modal');
+}
 
 function addSeason()
 {
