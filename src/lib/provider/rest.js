@@ -7,9 +7,15 @@ export default class Rest
 	{
 		const cmd = options.cmd;
 		const params = {};
+		const id = options.id ?? false;
 		const filter = options.filter ?? false;
 		const fields = options.fields ?? false;
 		const order = options.order ?? false;
+
+		if (id)
+		{
+			params.id = id
+		}
 
 		if (filter)
 		{

@@ -43,6 +43,23 @@ export default class Collection
 		})
 	}
 
+	delete(id)
+	{
+		return new Promise((resolve, reject) =>
+		{
+			const cmd = this.serviceName + 'delete';
+
+			(new Rest({
+				cmd,
+				id
+			}))
+			.then(() => {
+				this.refreshByFilter();
+				resolve()
+			})
+		})
+	}
+
 	init(map)
 	{
 		this.clear();

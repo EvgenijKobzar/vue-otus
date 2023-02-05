@@ -38,6 +38,7 @@
 		/>
 		<main-details :serials="state.serials" :seasons="state.seasons" :episodes="state.episodes" :id="state.episodeId"
 									@main-area-serial-change="refresh"
+									@main-details-delete="deleteItem"
 									v-if="state.status === Status.NONE && state.page === Page.DETAIL"
 		/>
 	</template>
@@ -162,6 +163,14 @@ function addEpisode()
 	.then(() => state.status = Status.NONE)
 }
 
+function deleteItem(data)
+{
+	state.status = Status.WAIT;
+	state.page = Page.INDEX;
+
+	return collectionEpisode.delete(data.episodeId)
+	.then(() => refresh({serial:{id: data.serialId}}))
+}
 function detail(data)
 {
 	state.episodeId = data.episode.id;

@@ -28,12 +28,10 @@
 						<p>{{item.description}}</p>
 						<div class="movie-details-prime">
 							<ul>
-								<li class="share"><a href="#"><i class="fas fa-share-alt"></i> Share</a></li>
 								<li class="streaming">
 									<h6>Prime Video</h6>
-									<span>Streaming Channels</span>
 								</li>
-								<li class="watch"><a href="https://www.youtube.com/watch?v=R2gbPxeNk2E" class="btn popup-video"><i class="fas fa-play"></i> Смотерть</a></li>
+								<li class="watch" @click.prevent="deleteItem"><a href="#" class="btn popup-video">Удалить</a></li>
 							</ul>
 						</div>
 					</div>
@@ -53,9 +51,22 @@ import Type from "../lib/type.js";
 const props = defineProps([
 	'item',
 ])
+
+const emit = defineEmits([
+	'main-details-area-delete',
+])
+
 const getSrc = computed(() => {
 	return getSrcByFileId(props.item.serialId, props.item.seasonId, props.item.fileId);
 })
+
+function deleteItem()
+{
+	emit('main-details-area-delete', {
+		episodeId: props.item.id,
+		serialId: props.item.serialId,
+	});
+}
 
 function getSrcByFileId(serialId, seasonId, episodeId)
 {

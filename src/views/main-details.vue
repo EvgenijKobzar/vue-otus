@@ -1,5 +1,7 @@
 <template>
-	<main-details-area :item="episode"/>
+	<main-details-area :item="episode"
+										 @main-details-area-delete="deleteItem"
+	/>
 	<main-serial :list="serials"
 							 @serial-change="emitSerialChange"
 	/>
@@ -20,6 +22,7 @@ const props = defineProps([
 
 const emit = defineEmits([
 	'main-area-serial-change',
+	'main-details-delete',
 ])
 
 const episode = computed(() => {
@@ -35,7 +38,10 @@ const episode = computed(() => {
 
 	return {};
 })
-
+function deleteItem(data)
+{
+	emit('main-details-delete', data );
+}
 function emitSerialChange(data)
 {
 	emit('main-area-serial-change', data );
