@@ -28,13 +28,19 @@ export default class Collection
 
 	create(fields)
 	{
-		const cmd = this.serviceName + 'add';
+		return new Promise((resolve, reject) =>
+		{
+			const cmd = this.serviceName + 'add';
 
-		(new Rest({
-			cmd,
-			fields
-		}))
-		.then(() => this.refreshByFilter())
+			(new Rest({
+				cmd,
+				fields
+			}))
+			.then(() => {
+				this.refreshByFilter();
+				resolve()
+			})
+		})
 	}
 
 	init(map)
